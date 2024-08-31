@@ -119,6 +119,7 @@ class TopImageSection extends StatefulWidget {
 class _TopImageSectionState extends State<TopImageSection> {
   String packageName = '';
   String packageShortDescription = '';
+  String image = '';
   List<String> galleryUrls = [];
 
 
@@ -142,6 +143,7 @@ class _TopImageSectionState extends State<TopImageSection> {
         final data = json.decode(response.body)['content'];
         setState(() {
           packageName = data['packageName'] ?? 'N/A';
+          image = data['image'] ?? 'N/A';
           packageShortDescription = data['packageShortDescription'] ?? 'N/A';
           galleryUrls = List<String>.from(data['galleryUrls'] ?? []);
         });
@@ -160,8 +162,8 @@ class _TopImageSectionState extends State<TopImageSection> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          TImages.canada, // Đường dẫn đến hình ảnh
+        Image.network(
+          image, // Đường dẫn đến hình ảnh từ URL
           height: 300,
           width: double.infinity,
           fit: BoxFit.cover,

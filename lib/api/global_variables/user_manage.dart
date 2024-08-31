@@ -38,4 +38,11 @@ class UserManager {
   set token(String? token){
     _token = token;
   }
+
+  void clear() {
+    id = null;
+    email = null;
+    role = null;
+    token = null;
+  }
 }

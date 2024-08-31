@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:onedaytrip/api/global_variables/user_manage.dart';
 import 'package:onedaytrip/common/widgets/appbar/appbar.dart';
 import 'package:onedaytrip/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:onedaytrip/common/widgets/list_tiles/settings_menu_tile.dart';
@@ -84,7 +85,12 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: () => Get.to(() => const LoginScreen()), child: const Text('Logout')),
+                    child: OutlinedButton(onPressed: () {
+                      // Clear UserManager data
+                      UserManager().clear();
+                      // Navigate to LoginScreen
+                      Get.to(() => const LoginScreen());
+                    }, child: const Text('Logout')),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections * 2.5),
                 ],
